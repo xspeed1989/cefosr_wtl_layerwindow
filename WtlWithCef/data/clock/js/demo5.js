@@ -60,7 +60,7 @@ function minuteHtml() {
 
 function hourHtml() {
     let e = "";
-    for (let t = 1; t <= 12; t++) e += "<li><span>" + NumberToChinese(t) + "时</span></li>";
+    for (let t = 0; t <= 12; t++) e += "<li><span>" + (t == "0" ? "一十二" : NumberToChinese(t)) + "时</span></li>";
     $(".hour ul").html(e);
     for (let e = 0; e < 12; e++) {
         if ($(".hour ul li").eq(e).css("transform", "rotate(" + 30 * e + "deg)"), 6 != e) {
