@@ -1,0 +1,15 @@
+*{
+    margin: 0;padding: 0;
+}
+html,body{
+    font-family: "Microsoft YaHei UI";
+}
+a{
+    text-decoration: none;
+}
+span,em,b,i{
+    font-style: normal;
+}
+li{
+    list-style: none;
+}
