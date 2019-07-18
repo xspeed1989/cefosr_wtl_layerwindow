@@ -57,13 +57,10 @@ void ClientHandler::OnPaint(CefRefPtr<CefBrowser> browser, PaintElementType type
     {
         for (int j = 0; j != width; ++j)
         {
-            pvBits[i * width + j] = reinterpret_cast<const DWORD*>(buffer)[(height - i - 1) * width + j];
+            pvBits[i * width + j] = reinterpret_cast<const DWORD*>(buffer)[(height - i - 1) * width + j];          
             byte *pByte = (byte*)&pvBits[i * width + j];
-
             pByte[0] = pByte[0] * pByte[3] / 255;
-
             pByte[1] = pByte[1] * pByte[3] / 255;
-
             pByte[2] = pByte[2] * pByte[3] / 255;
         }
     }
@@ -171,6 +168,16 @@ float GetWindowScaleFactor(HWND hwnd) {
             return static_cast<float>(func_ptr(hwnd)) / DPI_1X;
     }
     return GetDeviceScaleFactor();
+}
+
+void ClientHandler::onMouseMove(int x, int y)
+{
+    if (!m_Browser)
+        return;
+    CefMouseEvent me;
+    me.x = x;
+    me.y = y;
+    m_Browser->GetHost()->SendMouseMoveEvent(me, false);
 }
 
 //bool ClientHandler::GetScreenInfo(CefRefPtr<CefBrowser> browser, CefScreenInfo& screen_info)

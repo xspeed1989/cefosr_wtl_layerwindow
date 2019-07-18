@@ -86,7 +86,6 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 #endif
     settings.windowless_rendering_enabled = true;
     settings.multi_threaded_message_loop = false;
-    settings.background_color = CefColorSetARGB(255, 255, 255, 255);
     CefString(&settings.application_client_id_for_file_scanning)
         .FromString("9A8DE24D-B822-4C6C-8259-5A848FEA1E68");
     CefInitialize(main_args, settings, app, sandbox_info);  

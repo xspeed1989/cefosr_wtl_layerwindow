@@ -54,7 +54,7 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
     window_info.shared_texture_enabled = false;
     window_info.ex_style |= WS_EX_NOACTIVATE;
     CefBrowserSettings browser_settings;
-    browser_settings.background_color = CefColorSetARGB(0, 0, 0, 0);
+    browser_settings.background_color = CefColorSetARGB(0, 255, 255, 255);
     browser_settings.windowless_frame_rate = 30;
     browser_settings.webgl = STATE_DISABLED;
     handler = new ClientHandler(*this);
@@ -112,7 +112,13 @@ void CMainDlg::CloseDialog(int nVal)
 LRESULT CMainDlg::OnNcHitTest(UINT, WPARAM, LPARAM, BOOL& bHandled)
 {
     bHandled = true;
-    return HTCAPTION;
+    return GetAsyncKeyState(VK_CONTROL) & (1 << 15)  ? HTCLIENT : HTCAPTION;
+}
+
+LRESULT CMainDlg::OnMouseMove(UINT, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+{
+    handler->onMouseMove(LOWORD(lParam), HIWORD(lParam));
+    return 1;
 }
 
 //LRESULT CMainDlg::OnNCCalcSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)

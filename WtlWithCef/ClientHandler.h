@@ -15,9 +15,10 @@ public:
     virtual CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler() override;
     virtual void OnAfterCreated(CefRefPtr<CefBrowser> browser) override;
     virtual void OnBeforeClose(CefRefPtr<CefBrowser> browser) override;
+
     /*virtual bool ClientHandler::GetScreenInfo(CefRefPtr<CefBrowser> browser, CefScreenInfo& screen_info) override;*/
     void close();
-
+    void onMouseMove(int x, int y);
     
 private:
     HWND hParent;
